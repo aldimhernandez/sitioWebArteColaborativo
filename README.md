@@ -3,11 +3,13 @@ UNA | Artes Multimediales | Informática Aplicada 1 | Cátedra Calcagno | TP Fin
 
 Consigna del TP:
 
-1) El trabajo a entregar es un sitio web colaborativo. Esto significa que el sitio web permite a usuarios registrarse, crear una cuenta, iniciar sesión y subir algún tipo de información.
+1) El trabajo a entregar es un sitio web colaborativo. 
 
-La información que vayan subiendo los usuarios se debe utilizar para crear una obra de arte colaborativa. 
+a - Esto significa que el sitio web permite a usuarios registrarse, crear una cuenta, iniciar sesión y subir algún tipo de información.
 
-Para la creación de este sitio se utilizará PHP, MySQL y Processing.js o P5.js.
+b - La información que vayan subiendo los usuarios se debe utilizar para crear una obra de arte colaborativa. 
+
+c - Para la creación de este sitio se utilizará PHP, MySQL y Processing.js o P5.js.
 
 2) El código debe estar perfectamente comentado.
 
