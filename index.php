@@ -68,8 +68,8 @@
             <h1>Eres el administrador del sistema</h1>
             <p>Por esto tienes algunas opciones extra</p>
 
-            <div><a href="delete_BD.php">Eliminar Usuario</a></div>
-            <div><a href="ver_BD.php">Ver Info de Usuario</a></div>
+            <div><a href="php/delete_BD.php">Eliminar Usuario</a></div>
+            <div><a href="php/ver_BD.php">Ver Info de Usuario</a></div>
 
         <?php
 

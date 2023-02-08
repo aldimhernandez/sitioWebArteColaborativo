@@ -17,11 +17,11 @@
     //a las que s�lo podr�n acceder usuarios registrados, entonces para ello partimos del siguiente c�digo:
 
     session_start();
-    include('php/acceso_db.php'); // inclu�mos los datos de acceso a la BD
+    include('acceso_db.php'); // inclu�mos los datos de acceso a la BD
     // comprobamos que se haya iniciado la sesi�n, o sea que un usuaior autorizado haya iniciado sesion
 
     if ($_SESSION['usuario_nombre'] == 'Admin') {
-        include("php/postLogin_header.php");
+        include("postLogin_header.php");
     ?>
 
 
@@ -59,7 +59,7 @@
         <a href='acceso.php'>Ingresar</a> / <a href='registro.php'>Regitrarme</a>";
     }
 
-    include("php/footer.php");
+    include("footer.php");
     ?>
 
 
