@@ -1,85 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
-
-    <?php
-    include("header.php");
-    ?>
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 
 <body>
-
     <?php
-    //P�ginas restringidas:
-    //Como en toda web con sistema de usuarios, siempre habr�n zonas restringidas 
-    //a las que s�lo podr�n acceder usuarios registrados, entonces para ello partimos del siguiente c�digo:
 
+    //Pagina restringida para los usuarios. Solo acceso de Admin.
+
+    //La función session_start crea una sesión o reanuda la actual basada en un identificador de sesión pasado mediante una petición GET o POST, o pasado mediante una cookie.
     session_start();
-    include('acceso_db.php'); // inclu�mos los datos de acceso a la BD
-    // comprobamos que se haya iniciado la sesi�n, o sea que un usuaior autorizado haya iniciado sesion
+    //Invocamos los datos almacenados en el archivo acceso_db requeridos para el inicio de la sesión
+    include('acceso_db.php');
 
+    //Si el nombre de usuario es Admin
     if ($_SESSION['usuario_nombre'] == 'Admin') {
+
+        //Mostrar el header de post login
         include("postLogin_header.php");
     ?>
+        <?php
 
+        //Realizamos una query para traer todos los usuarios registrados en la BD
+        $sql = "SELECT * FROM usuarios";
+        //Guardamos el resultado de la query
+        $result = $conn->query($sql);
 
-        <html>
+        ?>
+        <div>
+            <div>
+                <h1>Eliminar usuario:</h1>
+                <p>Selecciona un Usuario:</p>
+            </div>
 
-        <body>
-
-            <?php
-
-            $sql = "SELECT * FROM usuarios";
-            $result = $conn->query($sql);
-
-            ?>
-            <div class="container">
-                <div class="jumbotron">
-                    <h1>Eliminar usuario:</h1>
-                    <p>Selecciona un Usuario:</p>
-                </div>
-
-                <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
-                    <form action="procesar_delete_BD.php" class="login100-form validate-form flex-sb flex-w" method="post">
+            <div>
+                <form action="procesar_delete_BD.php" method="post">
+                    <div>
                         <select name="borrar">
                             <option>Seleccione un Usuarios</option>
-                </div>
-                <?php
+                            <?php
 
-                while ($row = $result->fetch_assoc()) {
-                    echo "<option value=" . $row['usuario_nombre'] . ">" . $row['usuario_nombre'] . "</option>\n";
-                }
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<option value=" . $row['usuario_nombre'] . ">" . $row['usuario_nombre'] . "</option>\n";
+                            }
 
+                            ?>
 
-                ?>
-
-                </select>
-
-                <div class="container-login100-form-btn">
-                    <button name="enviar" class="login100-form-btn">
-                        Eliminar
-                    </button>
-                </div>
+                        </select>
+                    </div>
+                    <div>
+                        <button name="enviar">
+                            Eliminar
+                        </button>
+                    </div>
                 </form>
             </div>
-            </div>
-
-
         <?php
     }
-    //Si no es as�, o sea no se ha iniciado sesion, lo indicamos...
+    //Sino se ha iniciado la sesión 
     else {
-        echo "Est�s accediendo a una p�gina restringida, donde solo el administrador puede acceder.<br /> 
+        //Se informa del error y se invita a volver al login
+        echo "Acceso restringido. Solo se permiten usuarios administradores.<br /> 
         <a href='acceso.php'>Volver</a>";
     }
 
-
     include("footer.php");
         ?>
+        </div>
 
+</body>
 
-        </body>
-
-        </html>
+</html>
