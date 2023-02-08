@@ -2,67 +2,65 @@
 <html lang="es">
 
 <head>
-
-    <?php
-    include("php/header.php");
-    ?>
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador</title>
 </head>
 
 <body>
-
     <?php
-    //P�ginas restringidas:
-    //Como en toda web con sistema de usuarios, siempre habr�n zonas restringidas 
-    //a las que s�lo podr�n acceder usuarios registrados, entonces para ello partimos del siguiente c�digo:
 
+    //Pagina restringida para los usuarios. Solo acceso de Admin.
+
+    //La función session_start crea una sesión o reanuda la actual basada en un identificador de sesión pasado mediante una petición GET o POST, o pasado mediante una cookie.
     session_start();
-    include('acceso_db.php'); // inclu�mos los datos de acceso a la BD
-    // comprobamos que se haya iniciado la sesi�n, o sea que un usuaior autorizado haya iniciado sesion
+    //Invocamos los datos almacenados en el archivo acceso_db requeridos para el inicio de la sesión
+    include('acceso_db.php');
 
+    //Si el nombre de usuario es Admin
     if ($_SESSION['usuario_nombre'] == 'Admin') {
+
+        //Mostrar el header de post login
         include("postLogin_header.php");
     ?>
-
-
         <?php
 
+        //Enviamos una solicitud para que se elimine el usuario de la base de datos
         $name = $_POST['borrar'];
-
-
         $sql = "DELETE FROM usuarios WHERE usuario_nombre='$name'";
 
         ?>
 
-        <div class="container">
-            <div class="jumbotron">
+        <div>
+            <div>
                 <h1>Eliminar usuario:</h1>
                 <p>Selecciona un Usuario:</p>
             </div>
 
-
             <?php
 
             if ($result = $conn->query($sql)) {
-                echo "El usuario " . $_POST['borrar'] . " ha sido eliminado de la base de datos con exito";
+                echo "El usuario " . $_POST['borrar'] . " ha sido eliminado de la base de datos correctamente";
             } else {
-                echo "El usuario no pudo ser eliminado";
+                echo "Error al eliminar el usuario";
             }
             ?>
         </div>
 
     <?php
     }
-    //Si no es as�, o sea no se ha iniciado sesion, lo indicamos...
+    //Sino se ha iniciado la sesión 
     else {
-        echo "Est�s accediendo a una p�gina restringida, para ver su contenido debes estar registrado.<br /> 
-        <a href='acceso.php'>Ingresar</a> / <a href='registro.php'>Regitrarme</a>";
+
+        //Se informa del error y se invita a volver al login
+        echo "Acceso restringido. Solo se permiten usuarios administradores.<br /> 
+        <a href='acceso.php'>Ingresar</a> | <a href='registro.php'>Registrarme</a>";
     }
 
+    //Invocamos al footer
     include("footer.php");
     ?>
-
-
 </body>
 
 </html>
