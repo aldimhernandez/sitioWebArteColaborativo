@@ -1,8 +1,0 @@
-1) El trabajo a entregar es un sitio web colaborativo. Esto significa que el sitio web permite a usuarixs registrarse, crear una cuenta, loguearse y subir algún tipo de información.
-La información que vayan subiendo lxs usuarixs se debe utilizar para crear una obra de arte colaborativa. Para la creación de este sitio se utilizará PHP, MySQL y Processing.js o P5.js.
-
-2) El código debe estar perfectamente comentado.
-
-3) Se debe agregar a los archivos del sitio un archivo de texto que indique cómo se utiliza el sitio y cómo utiliza el sitio los datos de lxs usuarixs para crear la obra colaborativa.
-
-4) Además de los archivos del sitio se debe entregar una exportación de la o las bases de datos que utilice el sitio para que yo pueda replicarla en mi sistema (exportar desde phpmyadmin).
