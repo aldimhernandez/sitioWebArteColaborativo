@@ -39,7 +39,7 @@
             </div>
 
             <div>
-                <form action="procesar_delete_BD.php" method="post">
+                <form action="procesar_admin_sesion.php" method="post">
                     <div>
                         <select name="borrar">
                             <option>Seleccione un Usuarios</option>
