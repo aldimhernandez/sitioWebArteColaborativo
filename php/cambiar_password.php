@@ -9,6 +9,7 @@
 </head>
 
 <body>
+
     <?php
 
     //La función session_start crea una sesión o reanuda la actual basada en un identificador de sesión pasado mediante una petición GET o POST, o pasado mediante una cookie.
@@ -19,8 +20,30 @@
     //Si la sesión actual no es nula, es decir esta activa
     if (isset($_SESSION['usuario_nombre'])) {
 
-        //Si la sesión esta activa se muestra el encabezado post login
-        include("postLogin_header.php");
+    ?>
+
+        <!-- Header con barra de navegación para todas las paginas de post login -->
+        <nav>
+            <!-- Saludamos al usuario logueado -->
+            <a href="../index.php">
+                Hola <?= $_SESSION['usuario_nombre'] ?>
+            </a>
+
+            <ul>
+                <!-- El logo del header redirige al home -->
+                <li>
+                    <a href="../index.php">
+                        <img src="../img/perfil.png" alt="Logo">
+                    </a>
+                </li>
+                <!-- Link para cerrar sesión -->
+                <li>
+                    <a href="logout.php">Salir</a>
+                </li>
+            </ul>
+        </nav>
+
+        <?php
 
         if (isset($_POST['enviar'])) {
             //Si la contraseña ingresada no coincide con la confirmación de la contraseña
@@ -41,7 +64,8 @@
                 $result = $conn->query($sql);
                 //Si ... se envía un mensaje de cambio de contraseña exitoso
                 if ($result) {
-                    echo "Password cambiado correctamente.";
+                    echo "Password cambiado correctamente.
+                    <a href='../index.php'>Volver al inicio</a>";
                 }
                 //Sino
                 else {
@@ -53,8 +77,8 @@
             }
         } else {
 
-    ?>
-            //
+        ?>
+            <!-- Formulario para ingresar las nuevas credenciales -->
             <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
                 <label>Nuevo Password:</label><br />
                 <input type="password" name="usuario_clave" maxlength="15" /><br />

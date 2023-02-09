@@ -53,14 +53,13 @@
                 //Se realiza una query para insertar los datos ingresados por el usuario en la base de datos
                 $reg = "INSERT INTO usuarios (usuario_nombre, usuario_clave, usuario_email, usuario_freg) VALUES ('" . $usuario_nombre . "', '" . $usuario_clave . "', '" . $usuario_email . "', NOW())";
 
-                //Si se registro el usuario con exito
+                //Si se registro el usuario con éxito
                 if ($conn->query($reg) === TRUE) {
-
     ?>
                     <!-- Mostramos un mensaje de éxito al usuario -->
                     <div>
                         <div>
-                            <p> Datos ingresados correctamente. Ya puedes acceder con tu usuario y password a las paginas para usuarios. </p>
+                            <p> Datos ingresados correctamente. Ya puedes acceder a tu cuenta. </p>
                             <a href="../index.php">Login</a>
                         </div>
                     </div>

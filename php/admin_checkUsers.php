@@ -41,7 +41,7 @@
 				<p>Selecciona un Usuario:</p>
 			</div>
 			<!-- Formulario donde se mostraran los usuarios -->
-			<form action="admin_usuarios.php" method="post">
+			<form action="admin_checkUsers.php" method="post">
 				<!-- Sección para seleccionar los usuarios -->
 				<select name="ver" onchange="this.form.submit()">
 					<!-- Comienza el area de opciones -->
@@ -90,6 +90,8 @@
 			echo "<br>";
 
 			?>
+
+			<div><a href="admin_deleteUsers.php">Eliminar Usuario</a></div>
 
 		</section>
 

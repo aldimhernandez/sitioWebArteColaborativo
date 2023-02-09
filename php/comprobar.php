@@ -5,8 +5,9 @@ session_start();
 //Invocamos los datos almacenados en el archivo acceso_db requeridos para el inicio de la sesión
 include('acceso_db.php');
 
-echo $_POST['usuario_nombre'];
-echo $_POST['usuario_clave'];
+//En caso de error muestro al usuario los datos ingresados.
+echo "Usuario Ingresado: " . $_POST['usuario_nombre'] . "</br>";
+echo "Clave Ingresada: " . $_POST['usuario_clave'] . "</br>";
 
 //Comprobamos que se hayan enviado los datos del formulario
 if (isset($_POST['enviar'])) {
@@ -45,7 +46,7 @@ if (isset($_POST['enviar'])) {
 ?>
             <!-- Enviamos un mensaje con el error correspondiente -->
             <div>
-                El usuario o la contraseña ingresada no son correctos, <a href="../index.php">Reintentar</a>
+                Usuario o contraseña incorrectos, <a href="../index.php">Reintentar</a>
             </div>
 <?php
         }

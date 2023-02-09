@@ -1,7 +1,7 @@
 <!-- Header con barra de navegación para todas las paginas de post login -->
 <nav>
     <!-- Saludamos al usuario logueado -->
-    <a href="#">
+    <a href="../index.php">
         Hola <?= $_SESSION['usuario_nombre'] ?>
     </a>
 
@@ -14,11 +14,11 @@
         </li>
         <!-- Link para cambiar contraseña -->
         <li>
-            <a href="cambiar_password.php">Cambiar Contraseña</a>
+            <a href="php/cambiar_password.php">Cambiar Contraseña</a>
         </li>
         <!-- Link para cerrar sesión -->
         <li>
-            <a href="logout.php">Salir</a>
+            <a href="php/logout.php">Salir</a>
         </li>
     </ul>
 </nav>

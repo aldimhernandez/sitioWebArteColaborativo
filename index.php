@@ -46,7 +46,7 @@
             </div>
             <div>
                 <div>
-                    <a href="registrarse.php">
+                    <a href="php/registrarse.php">
                         Registrarse
                     </a>
                 </div>
@@ -63,22 +63,24 @@
     } else {
 
         if ($_SESSION['usuario_nombre'] == 'Admin') {
+
             include("php/postLogin_header.php");
         ?>
             <h1>Eres el administrador del sistema</h1>
             <p>Por esto tienes algunas opciones extra</p>
 
-            <div><a href="php/admin_sesion.php">Eliminar Usuario</a></div>
-            <div><a href="php/admin_usuarios.php">Ver Info de Usuario</a></div>
+            <div><a href="php/admin_checkUsers.php">Ver Info de Usuario</a></div>
+            <div><a href="php/admin_deleteUsers.php">Eliminar Usuario</a></div>
 
         <?php
 
         } else {
+
             include("php/postLogin_header.php");
         ?>
 
-            <h1>Bienvenido a tu sesion de usuario</h1>
-            <p>En tu sesion podrás recorrer diferentes paginas y cambiar tu password</p>
+            <h1>Bienvenido a tu sesión de usuario</h1>
+            <p>En tu sesión podrás recorrer diferentes paginas y cambiar tu password</p>
 
             <h2>Sistemas de usuarios con Login</h2>
             <p>Click en el botón si deseas más información.</p>

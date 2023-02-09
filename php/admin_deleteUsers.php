@@ -40,7 +40,7 @@
             </div>
 
             <div>
-                <form action="procesar_admin_sesion.php" method="post">
+                <form action="delete_process.php" method="post">
                     <div>
                         <!-- Elemento que despliega los usuarios para verlos y seleccionar uno -->
                         <select name="borrar">
@@ -63,8 +63,13 @@
                     </div>
                 </form>
             </div>
+            <div>
+                <a href="admin_checkUsers.php">Ver Info de Usuario</a>
+            </div>
+        </section>
+        <!-- Cierre -->
 
-        <?php
+    <?php
     }
 
     //Sino se ha iniciado la sesión 
@@ -75,9 +80,7 @@
     }
 
     include("footer.php");
-        ?>
-        <!-- Cierre -->
-        </section>
+    ?>
 
 </body>
 
