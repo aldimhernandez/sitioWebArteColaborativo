@@ -40,15 +40,19 @@
 
             <?php
 
+            //Si la query resulto exitosa se envia un mensaje al usuario Administrador notificando que el usuario ha sido eliminado
             if ($result = $conn->query($sql)) {
                 echo "El usuario " . $_POST['borrar'] . " ha sido eliminado de la base de datos correctamente";
-            } else {
+            }
+            //Sino se lo notifica del error
+            else {
                 echo "Error al eliminar el usuario";
             }
             ?>
         </div>
 
     <?php
+
     }
     //Sino se ha iniciado la sesión 
     else {

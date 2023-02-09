@@ -2,145 +2,130 @@
 <html lang="en">
 
 <head>
-
-    <?php
-    include("header.php");
-    ?>
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regístrate</title>
 </head>
 
 <body>
-
     <?php
-    //Ahora pasaremos a crear nuestro formulario de acceso o Login, a este archivo lo llamaremos acceso.php
-    //recordemos que podemos cerrar un script en el medio de un if o un for
-    //para agregar info html.
 
-
-    //importante para indicar que se iniciar· una session
+    //La función session_start crea una sesión o reanuda la actual basada en un identificador de sesión pasado mediante una petición GET o POST, o pasado mediante una cookie.
     session_start();
+    //Invocamos los datos almacenados en el archivo acceso_db requeridos para el inicio de la sesión
     include('acceso_db.php');
 
-    if (isset($_POST['enviar'])) { // comprobamos que se han enviado los datos desde el formulario
-
-        if ($_POST['usuario_clave'] != $_POST['usuario_clave_conf']) { // comprobamos que las contraseÒas ingresadas coincidan
+    //Comprobamos que se hayan enviado los datos del formulario 
+    if (isset($_POST['enviar'])) {
+        //Si los campos usuarios_nombre y usuario_clave no coinciden
+        if ($_POST['usuario_clave'] != $_POST['usuario_clave_conf']) {
+            //Mostramos un mensaje de error y un link de reintentar
             echo "Las contraseñas ingresadas no coinciden. <a href='javascript:history.back();'>Reintentar</a>";
-        } else {
-            // "limpiamos" los campos del formulario de posibles cÛdigos maliciosos
+        }
+        //Si las credenciales son correctas
+        else {
+            //Guardamos los datos ingresados por el usuario en variables para usar luego
+            //Nombre    
             $usuario_nombre = $_POST['usuario_nombre'];
+            //Clave
             $usuario_clave = $_POST['usuario_clave'];
+            //Email
             $usuario_email = $_POST['usuario_email'];
             // comprobamos que el usuario ingresado no haya sido registrado antes
 
+            //Realizamos una query donde seleccionamos la fila de datos por nombre de usuario en la base de datos
             $sql = "SELECT usuario_nombre FROM usuarios WHERE usuario_nombre='" . $usuario_nombre . "'";
-
+            //Guardamos el resultado de la query
             $result = $conn->query($sql);
 
+            //Si el nombre de usuario existe en la base de datos
             if ($result->num_rows > 0) {
+                //Enviamos la notificación al usuario
                 echo "El nombre usuario elegido ya ha sido registrado anteriormente. <a href='javascript:history.back();'>Reintentar</a>";
-            } else {
-                //Calcula el hash MD5 de str utilizando el ª algoritmo de resumen de mensaje MD5 de RSA Data Security, Inc. y devuelve ese hash.
-                $usuario_clave = md5($usuario_clave); // encriptamos la contraseÒa ingresada con md5
+            }
+            //Sino existe el nombre en la base
+            else {
 
-                //Codifica data en base64. Este tipo de codificaciÛn est· diseÒado para que datos binarios sobrepasen capas de transporte que no son de 8-bits 100%, como por ejemplo el cuerpo de un E-Mail.
-                //La codificaciÛn en Base64 hace que los datos sean un 33% m·s largos que los datos el originales.
-                //$usuario_clave = base64_encode($usuario_clave);
+                //Se encripta la contraseña con md5 que calcula el hash de un string, devuelve un hash de 32 caracteres hexadecimales
+                $usuario_clave = md5($usuario_clave);
 
-                // ingresamos los datos a la BD
-
-
+                //Se realiza una query para insertar los datos ingresados por el usuario en la base de datos
                 $reg = "INSERT INTO usuarios (usuario_nombre, usuario_clave, usuario_email, usuario_freg) VALUES ('" . $usuario_nombre . "', '" . $usuario_clave . "', '" . $usuario_email . "', NOW())";
 
-
+                //Si se registro el usuario con exito
                 if ($conn->query($reg) === TRUE) {
 
     ?>
-                    <div class="limiter">
-                        <div class="container-login100">
-                            <p>Datos ingresados correctamente. Ya puedes acceder con tu usuario y password a las paginas para usuarios.</p>
-
+                    <!-- Mostramos un mensaje de éxito al usuario -->
+                    <div>
+                        <div>
+                            <p> Datos ingresados correctamente. Ya puedes acceder con tu usuario y password a las paginas para usuarios. </p>
                             <a href="../index.php">Login</a>
                         </div>
                     </div>
 
-
-
         <?php
-                } else {
-                    echo "ha ocurrido un error y no se registraron los datos.";
+                }
+                //Sino se registraron los datos en la base
+                else {
+                    //Se notifica del error
+                    echo "Ocurrió un error y los datos no pudieron ser registrados.";
                 }
             }
         }
     } else {
 
         ?>
-
-
-
-        <div class="limiter">
-            <div class="container-login100">
-                <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
-                    <form action="<?= $_SERVER['PHP_SELF'] ?>" class="login100-form validate-form flex-sb flex-w" method="post">
-                        <span class="login100-form-title p-b-32">
-                            Registrarse
-                        </span>
-
-                        <span class="txt1 p-b-11">
-                            Usuario
-                        </span>
-                        <div class="wrap-input100 validate-input m-b-36" data-validate="Username is required">
-                            <input class="input100" type="text" name="usuario_nombre">
-                            <span class="focus-input100"></span>
-                        </div>
-
-                        <span class="txt1 p-b-11">
-                            Password
-                        </span>
-                        <div class="wrap-input100 validate-input m-b-12" data-validate="Password is required">
-                            <span class="btn-show-pass">
-                                <i class="fa fa-eye"></i>
-                            </span>
-                            <input class="input100" type="password" name="usuario_clave">
-                            <span class="focus-input100"></span>
-                        </div>
-
-                        <span class="txt1 p-b-11">
-                            Confirmar Password
-                        </span>
-                        <div class="wrap-input100 validate-input m-b-12" data-validate="Password is required">
-                            <span class="btn-show-pass">
-                                <i class="fa fa-eye"></i>
-                            </span>
-                            <input class="input100" type="password" name="usuario_clave_conf">
-                            <span class="focus-input100"></span>
-                        </div>
-
-                        <span class="txt1 p-b-11">
-                            Email
-                        </span>
-                        <div class="wrap-input100 validate-input m-b-36" data-validate="Email is required">
-                            <input class="input100" type="email" name="usuario_email">
-                            <span class="focus-input100"></span>
-                        </div>
-
-                        <div class="container-login100-form-btn">
-                            <button name="enviar" class="login100-form-btn">
-                                Registrar
-                            </button>
-                        </div>
-
-                    </form>
-                </div>
+        <!-- Formulario de registro -->
+        <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
+            <!-- Titulo del formulario -->
+            <title>
+                Registrarse
+            </title>
+            <!-- Usuario -->
+            <label for="usuario_nombre">
+                Usuario
+            </label>
+            <div data-validate="Username is required">
+                <input type="text" name="usuario_nombre">
             </div>
-        </div>
-
-
-        <div id="dropDownSelect1"></div>
+            <!-- Contraseña -->
+            <label for="usuario_clave">
+                Contraseña
+            </label>
+            <div data-validate="Password is required">
+                <span>
+                    <i class="fa fa-eye"></i>
+                </span>
+                <input type="text" name="usuario_clave">
+            </div>
+            <!-- Confirmar contraseña -->
+            <label for="usuario_clave_conf">
+                Confirmar contraseña
+            </label>
+            <div data-validate="Password is required">
+                <span>
+                    <i class="fa fa-eye"></i>
+                </span>
+                <input type="password" name="usuario_clave_conf">
+            </div>
+            <!-- Correo Electrónico -->
+            <label for="usuario_email">
+                Correo electrónico
+            </label>
+            <div data-validate="Email is required">
+                <input type="email" name="usuario_email">
+            </div>
+            <!-- Enviar -->
+            <button type="submit" name="enviar">
+                Registrar
+            </button>
+        </form>
 
     <?php
     }
     ?>
-
 
 </body>
 
