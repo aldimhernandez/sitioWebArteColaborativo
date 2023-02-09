@@ -17,14 +17,14 @@
     */
     session_start();
     //Invocamos los datos almacenados en el archivo acceso_db requeridos para el inicio de la sesión 
-    include('php/acceso_db.php');
+    include('assets/php/acceso_db.php');
 
     //Se comprueba que la variable _SESSION esta o no vacía
     if (empty($_SESSION['usuario_nombre'])) {
         //Si la variable devuelve true (esta vacía) se redirige al usuario al formulario de inicio de sesión
     ?>
         <!-- Formulario de acceso: -->
-        <form action="php/comprobar.php" class="login100-form validate-form flex-sb flex-w" method="post">
+        <form action="assets/php/comprobar.php" class="login100-form validate-form flex-sb flex-w" method="post">
             <span>
                 Account Login
             </span>
@@ -46,7 +46,7 @@
             </div>
             <div>
                 <div>
-                    <a href="php/registrarse.php">
+                    <a href="assets/php/registrarse.php">
                         Registrarse
                     </a>
                 </div>
@@ -64,19 +64,19 @@
 
         if ($_SESSION['usuario_nombre'] == 'Admin') {
 
-            include("php/postLogin_header.php");
+            include("assets/php/postLogin_header.php");
         ?>
             <h1>Eres el administrador del sistema</h1>
             <p>Por esto tienes algunas opciones extra</p>
 
-            <div><a href="php/admin_checkUsers.php">Ver Info de Usuario</a></div>
-            <div><a href="php/admin_deleteUsers.php">Eliminar Usuario</a></div>
+            <div><a href="assets/php/admin_checkUsers.php">Ver Info de Usuario</a></div>
+            <div><a href="assets/php/admin_deleteUsers.php">Eliminar Usuario</a></div>
 
         <?php
 
         } else {
 
-            include("php/postLogin_header.php");
+            include("assets/php/postLogin_header.php");
         ?>
 
             <h1>Bienvenido a tu sesión de usuario</h1>
@@ -96,7 +96,7 @@
         }
     }
 
-    include("php/footer.php");
+    include("assets/php/footer.php");
 
     ?>
 </body>
