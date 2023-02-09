@@ -32,7 +32,8 @@
         $result = $conn->query($sql);
 
         ?>
-        <div>
+        <!-- Inicio -->
+        <section>
             <div>
                 <h1>Eliminar usuario:</h1>
                 <p>Selecciona un Usuario:</p>
@@ -41,11 +42,13 @@
             <div>
                 <form action="procesar_admin_sesion.php" method="post">
                     <div>
+                        <!-- Elemento que despliega los usuarios para verlos y seleccionar uno -->
                         <select name="borrar">
                             <option>Seleccione un Usuarios</option>
                             <?php
-
+                            //Se muestra todos los usuarios invocándolos uno por uno mediante un while
                             while ($row = $result->fetch_assoc()) {
+                                //Se muestra la opción del usuario
                                 echo "<option value=" . $row['usuario_nombre'] . ">" . $row['usuario_nombre'] . "</option>\n";
                             }
 
@@ -60,8 +63,10 @@
                     </div>
                 </form>
             </div>
+
         <?php
     }
+
     //Sino se ha iniciado la sesión 
     else {
         //Se informa del error y se invita a volver al login
@@ -71,7 +76,8 @@
 
     include("footer.php");
         ?>
-        </div>
+        <!-- Cierre -->
+        </section>
 
 </body>
 
