@@ -98,6 +98,7 @@
         header("Location: ../../index.php"); //Redirigimos al usuario al home del sitio, en este caso a index.php para que proceda a iniciar sesión
     }
     ?>
+
 </body>
 
 </html>
