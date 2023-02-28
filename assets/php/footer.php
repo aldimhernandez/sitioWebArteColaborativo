@@ -1,5 +1,5 @@
 <!-- Footer -->
-<footer>
+<footer class="container-fluid fixed-bottom">
     <!-- Copyright -->
     <div>© 2019 Copyright:
         UNA - Informática Aplicada I

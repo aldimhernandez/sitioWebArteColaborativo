@@ -60,7 +60,7 @@
                     <div>
                         <div>
                             <p> Datos ingresados correctamente. Ya puedes acceder a tu cuenta. </p>
-                            <a href="../../../index.php">Login</a>
+                            <a href="../../index.php">Login</a>
                         </div>
                     </div>
 
