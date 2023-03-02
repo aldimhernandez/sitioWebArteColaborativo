@@ -95,8 +95,12 @@
 
             <main>
                 <section class="container">
-                    <h1>Bienvenido</h1>
-                    <p>Este es el main</p>
+                    <h1>Mi sitio web</h1>
+                    <p>Bienvenido a mi sitio web</p>
+
+                    <textarea id="code"></textarea>
+                    <button id="generate">Generar Imagen</button>
+                    <canvas id="canvas"></canvas>
                 </section>
             </main>
 
@@ -108,6 +112,10 @@
     include("assets/php/footer.php");
 
     ?>
+    <!-- p5js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js" integrity="sha512-DWtDo/6AXxH1t9p7GCWqmC4XTVK/eje94XTV6QYB39rGllLN8Tr3izDf6lkmebgqRnYh4wtSFm4CvBoA9SrdpA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- p5js Canvas -->
+    <script src="assets/js/sketch.js"></script>
     <!-- Bootstrap 5 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
