@@ -6,6 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cambiar Contraseña</title>
+    <!-- Normalize Browser Style -->
+    <link rel="stylesheet" href="../../node_modules/normalize.css/">
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <!-- Styles -->
+    <link rel="stylesheet" href="../../assets/css/login-style.css">
 </head>
 
 <body>
@@ -23,24 +29,29 @@
     ?>
 
         <!-- Header con barra de navegación para todas las paginas de post login -->
-        <nav>
-            <!-- Saludamos al usuario logueado -->
-            <a href="../../index.php">
-                Hola <?= $_SESSION['usuario_nombre'] ?>
-            </a>
-
-            <ul>
-                <!-- El logo del header redirige al home -->
-                <li>
-                    <a href="../../index.php">
-                        <img src="../img/perfil.png" alt="Logo">
-                    </a>
-                </li>
-                <!-- Link para cerrar sesión -->
-                <li>
-                    <a href="logout.php">Salir</a>
-                </li>
-            </ul>
+        <nav class="navbar navbar-expand-lg bg-black">
+            <div class="container-fluid">
+                <ul class="nav nav-pills nav-fill">
+                    <!-- El logo del header redirige al home -->
+                    <li class="nav-item align-self-center">
+                        <a class="nav-link link-light" aria-current="page" href="http://localhost/sitioWebArteColaborativo/index.php">
+                            <img src="../../assets/img/perfil.png" class="img-fluid img-thumbnail" style="width: 3em;" alt="Logo">
+                        </a>
+                    </li>
+                    <!-- Saludamos al usuario logueado -->
+                    <li class="nav-item align-self-center">
+                        <a class="navbar-brand link-light" href="http://localhost/sitioWebArteColaborativo/index.php">
+                            Hola <?= $_SESSION['usuario_nombre'] ?>
+                        </a>
+                    </li>
+                    <!-- Link para cerrar sesión -->
+                    <li class="nav-item align-self-center">
+                        <a class="nav-link link-light" href="../../assets/php/logout.php">
+                            Salir
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </nav>
 
         <?php
@@ -48,9 +59,16 @@
         if (isset($_POST['enviar'])) {
             //Si la contraseña ingresada no coincide con la confirmación de la contraseña
             if ($_POST['usuario_clave'] != $_POST['usuario_clave_conf']) {
-                //Se envía un mensaje de error y un link (back.to) para reintentar cambiar la contraseña
-                echo "Las contraseñas ingresadas no coinciden. <a href='javascript:history.back();'> Reintentar </a>";
-                //Si las contraseña coinciden
+        ?>
+                <!-- Se envía un mensaje de error y un link (back.to) para reintentar cambiar la contraseña -->
+                <div class="login-page">
+                    <div class="form">
+                        <p class="message">Las contraseñas ingresadas no coinciden.
+                            <a href='javascript:history.back();'> Reintentar </a>
+                        </p>
+                    </div>
+                </div>
+                <?php
             } else {
                 //Se guarda el nombre de usuario
                 $usuario_nombre = $_SESSION['usuario_nombre'];
@@ -64,33 +82,52 @@
                 $result = $conn->query($sql);
                 //Si ... se envía un mensaje de cambio de contraseña exitoso
                 if ($result) {
-                    echo "Password cambiado correctamente.
-                    <a href='../../index.php'>Volver al inicio</a>";
+                ?>
+                    <!-- Mostramos un mensaje de éxito al usuario -->
+                    <div class="login-page">
+                        <div class="form">
+                            <p class="message">Password cambiado correctamente.
+                                <a href='../../index.php'>Volver al inicio</a></a>
+                            </p>
+                        </div>
+                    </div>
+
+                <?php
                 }
                 //Sino
                 else {
-                    //Enviamos un mensaje de error al registro de errores del servidor web
-                    error_log('No pudimos cambiar tu contraseña: Mensaje de error: ' . $mysqli->connect_error);
-                    //Enviamos un mensaje al usuario notificando que ocurrió un error al intentar cambiar la contraseña
-                    echo "Error: No pudimos cambiar tu contraseña. <a href='javascript:history.back();'>Reintentar</a>";
+
+                ?>
+                    <!-- Mostramos un mensaje de error al usuario -->
+                    <div class="login-page">
+                        <div class="form">
+                            <p class="message">No pudimos cambiar tu contraseña.
+                                <a href='javascript:history.back();'>
+                                    Login
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+            <?php
                 }
             }
         } else {
 
-        ?>
+            ?>
             <!-- Formulario para ingresar las nuevas credenciales -->
-            <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
-                <label>Nuevo Password:</label><br />
-                <input type="password" name="usuario_clave" maxlength="15" /><br />
-                <label>Confirmar:</label><br />
-                <input type="password" name="usuario_clave_conf" maxlength="15" /><br />
-                <input type="submit" name="enviar" value="enviar" />
-            </form>
-
+            <div class="login-page">
+                <div class="form">
+                    <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
+                        <label>Nuevo Password:</label><br />
+                        <input type="password" name="usuario_clave" maxlength="15" /><br />
+                        <label>Confirmar:</label><br />
+                        <input type="password" name="usuario_clave_conf" maxlength="15" /><br />
+                        <button type="submit" name="enviar">Cambiar Contraseña</button>
+                    </form>
+                </div>
+            </div>
     <?php
-
         }
-
         //Si la sesión no esta activa y por algún motivo el usuario termina en esta pagina se muestra un mensaje de error y se lo redirige a index.php
     } else {
 

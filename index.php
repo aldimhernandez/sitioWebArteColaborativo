@@ -8,8 +8,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Titulo del sitio -->
     <title>Sitio de Arte Colaborativo</title>
+    <!-- Normalize Browser Style -->
+    <link rel="stylesheet" href="node_modules/normalize.css/">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/login-style.css">
 </head>
 
 <body>
@@ -29,41 +37,20 @@
         //Si la variable devuelve true (esta vacía) se redirige al usuario al formulario de inicio de sesión
     ?>
         <main>
-            <section class="container">
-                <!-- Formulario de acceso: -->
-                <form action="assets/php/comprobar.php" class="login100-form validate-form flex-sb flex-w" method="post">
-                    <span>
-                        Account Login
-                    </span>
-                    <span>
-                        Username
-                    </span>
-                    <div>
-                        <input type="text" name="usuario_nombre">
-                    </div>
-                    <span>
-                        Password
-                    </span>
-                    <div data-validate="Password is required">
-                        <span>
-                            <i></i>
-                        </span>
-                        <input type="password" name="usuario_clave">
-                        <span></span>
-                    </div>
-                    <div>
-                        <div>
-                            <a href="assets/php/registrarse.php">
-                                Registrarse
-                            </a>
+            <section class="login-page">
+                <div class="form">
+                    <!-- Formulario de acceso: -->
+                    <form action="assets/php/comprobar.php" method="post" class="login-form">
+                        <input type="text" name="usuario_nombre" placeholder="Tú nombre de usuario" required />
+                        <div data-validate="Password is required"> <!-- quizás traiga errores -->
+                            <input type="password" name="usuario_clave" placeholder="Tú contraseña" required />
                         </div>
-                    </div>
-                    <div>
                         <button name="enviar">
-                            Login
+                            ingresar
                         </button>
-                    </div>
-                </form>
+                        <p class="message">¿Aún no tenes cuenta? <a href="assets/php/registrarse.php">Crear una cuenta</a></p>
+                    </form>
+                </div>
             </section>
         </main>
 
@@ -76,13 +63,12 @@
 
             include("assets/php/postLogin_header.php");
         ?>
-            <main>
-                <section class="container">
-                    <h1>Hola Admin</h1>
-                    <p>Permisos de Admin</p>
-
-                    <div><a href="assets/php/admin_checkUsers.php">Ver Info de Usuario</a></div>
-                    <div><a href="assets/php/admin_deleteUsers.php">Eliminar Usuario</a></div>
+            <main class="d-flex flex-column justify-content-center align-items-center login-page">
+                <h1 class="text-light">Hola Admin</h1>
+                <section class="m-4 d-flex flex-column justify-content-center align-items-center form" style="width: 80%">
+                    <p class="message">Permisos de Admin</p>
+                    <p class="message"><a href="assets/php/admin_checkUsers.php">Ver Info de Usuario</a></p>
+                    <p class="message"><a href="assets/php/admin_deleteUsers.php">Eliminar Usuario</a></p>
                 </section>
             </main>
 
@@ -93,14 +79,11 @@
             include("assets/php/postLogin_header.php");
         ?>
 
-            <main>
-                <section class="container">
+            <main class="d-flex flex-column justify-content-center align-items-center">
+                <section class="m-4 d-flex flex-column justify-content-center align-items-center" style="width: 80%">
                     <h1>Mi sitio web</h1>
                     <p>Bienvenido a mi sitio web</p>
-
-                    <textarea id="code"></textarea>
-                    <button id="generate">Generar Imagen</button>
-                    <canvas id="canvas"></canvas>
+                    <div id="contenedor-canvas"></div>
                 </section>
             </main>
 
@@ -112,12 +95,13 @@
     include("assets/php/footer.php");
 
     ?>
-    <!-- p5js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js" integrity="sha512-DWtDo/6AXxH1t9p7GCWqmC4XTVK/eje94XTV6QYB39rGllLN8Tr3izDf6lkmebgqRnYh4wtSFm4CvBoA9SrdpA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- p5js Canvas -->
-    <script src="assets/js/sketch.js"></script>
+
     <!-- Bootstrap 5 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <!-- p5js library cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js" integrity="sha512-3RlxD1bW34eFKPwj9gUXEWtdSMC59QqIqHnD8O/NoTwSJhgxRizdcFVQhUMFyTp5RwLTDL0Lbcqtl8b7bFAzog==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Sketch -->
+    <script src="assets/js/sketch-paint-brush.js"></script>
 </body>
 
 </html>

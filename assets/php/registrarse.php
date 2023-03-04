@@ -6,6 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Regístrate</title>
+    <!-- Normalize Browser Style -->
+    <link rel="stylesheet" href="../../node_modules/normalize.css/">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <!-- Styles -->
+    <link rel="stylesheet" href="../../assets/css/login-style.css">
 </head>
 
 <body>
@@ -42,7 +52,15 @@
             //Si el nombre de usuario existe en la base de datos
             if ($result->num_rows > 0) {
                 //Enviamos la notificación al usuario
-                echo "El nombre usuario elegido ya ha sido registrado anteriormente. <a href='javascript:history.back();'>Reintentar</a>";
+    ?>
+                <!-- Mostramos un mensaje de éxito al usuario -->
+                <div class="login-page">
+                    <div class="form">
+                        <p class="message"> El nombre usuario elegido ya ha sido registrado anteriormente <a href='javascript:history.back();'>Reintentar</a> </p>
+                    </div>
+                </div>
+
+                <?php
             }
             //Sino existe el nombre en la base
             else {
@@ -55,12 +73,11 @@
 
                 //Si se registro el usuario con éxito
                 if ($conn->query($reg) === TRUE) {
-    ?>
+                ?>
                     <!-- Mostramos un mensaje de éxito al usuario -->
-                    <div>
-                        <div>
-                            <p> Datos ingresados correctamente. Ya puedes acceder a tu cuenta. </p>
-                            <a href="../../index.php">Login</a>
+                    <div class="login-page">
+                        <div class="form">
+                            <p class="message"> Datos ingresados correctamente. Ya puedes acceder a tu cuenta. <a href="../../index.php">Login</a></p>
                         </div>
                     </div>
 
@@ -76,56 +93,68 @@
     } else {
 
         ?>
-        <!-- Formulario de registro -->
-        <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
-            <!-- Titulo del formulario -->
-            <title>
-                Registrarse
-            </title>
-            <!-- Usuario -->
-            <label for="usuario_nombre">
-                Usuario
-            </label>
-            <div data-validate="Username is required">
-                <input type="text" name="usuario_nombre" required>
-            </div>
-            <!-- Contraseña -->
-            <label for="usuario_clave">
-                Contraseña
-            </label>
-            <div data-validate="Password is required">
-                <span>
-                    <i class="fa fa-eye"></i>
-                </span>
-                <input type="text" name="usuario_clave" required>
-            </div>
-            <!-- Confirmar contraseña -->
-            <label for="usuario_clave_conf">
-                Confirmar contraseña
-            </label>
-            <div data-validate="Password is required">
-                <span>
-                    <i class="fa fa-eye"></i>
-                </span>
-                <input type="password" name="usuario_clave_conf" required>
-            </div>
-            <!-- Correo Electrónico -->
-            <label for="usuario_email">
-                Correo electrónico
-            </label>
-            <div data-validate="Email is required">
-                <input type="email" name="usuario_email" required>
-            </div>
-            <!-- Enviar -->
-            <button type="submit" name="enviar">
-                Registrar
-            </button>
-        </form>
+        <!-- Formulario de registro 
+                        <input type="text" name="usuario_nombre" placeholder="Tú nombre de usuario" required />
+                        <input type="password" name="usuario_clave" placeholder="Tú contraseña" required />
+                        <input type="text" placeholder="Tú dirección de correo electrónico" required />
+        -->
+        <main>
+            <section class="login-page">
+                <div class="form">
+                    <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post" class="register-form">
+
+                        <!-- Usuario -->
+                        <label for="usuario_nombre">
+
+                        </label>
+                        <div data-validate="Username is required">
+                            <input type="text" name="usuario_nombre" placeholder="Tú nombre de usuario" required />
+                        </div>
+
+                        <!-- Contraseña -->
+                        <label for="usuario_clave">
+
+                        </label>
+                        <div data-validate="Password is required">
+                            <input type="password" name="usuario_clave" placeholder="Tú contraseña" required />
+                        </div>
+
+                        <!-- Confirmar contraseña -->
+                        <label for="usuario_clave_conf">
+
+                        </label>
+                        <div data-validate="Password is required">
+                            <input type="password" name="usuario_clave_conf" placeholder="Repetir contraseña" required>
+                        </div>
+
+                        <!-- Correo Electrónico -->
+                        <label for="usuario_email">
+
+                        </label>
+                        <div data-validate="Email is required">
+                            <input type="email" name="usuario_email" placeholder="Tú dirección de correo electrónico" required />
+                        </div>
+
+                        <!-- Enviar -->
+                        <button type="submit" name="enviar">
+                            Crear Cuenta
+                        </button>
+                        <!-- Ir a Login -->
+                        <p class="message">¿Ya tenes una cuenta?<a href="../../index.php"> Ingresa aquí</a></p>
+                    </form>
+                </div>
+            </section>
+        </main>
 
     <?php
     }
     ?>
-
+    <!-- p5js library cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js" integrity="sha512-3RlxD1bW34eFKPwj9gUXEWtdSMC59QqIqHnD8O/NoTwSJhgxRizdcFVQhUMFyTp5RwLTDL0Lbcqtl8b7bFAzog==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Sketch -->
+    <script src="assets/js/sketch-paint-brush.js"></script>
+    <!-- Bootstrap 5 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 
 </html>
