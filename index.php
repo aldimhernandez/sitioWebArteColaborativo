@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <!-- Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/login-style.css">
 </head>
@@ -81,8 +81,8 @@
 
             <main class="d-flex flex-column justify-content-center align-items-center">
                 <section class="m-4 d-flex flex-column justify-content-center align-items-center" style="width: 80%">
-                    <h1>Mi sitio web</h1>
-                    <p>Bienvenido a mi sitio web</p>
+                    <h1 class="text-light">Mi sitio web</h1>
+                    <p class="text-light">Bienvenido a mi sitio web</p>
                     <div id="contenedor-canvas"></div>
                 </section>
             </main>
@@ -97,11 +97,11 @@
     ?>
 
     <!-- Bootstrap 5 -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <!-- p5js library cdn -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js" integrity="sha512-3RlxD1bW34eFKPwj9gUXEWtdSMC59QqIqHnD8O/NoTwSJhgxRizdcFVQhUMFyTp5RwLTDL0Lbcqtl8b7bFAzog==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- p5js library -->
+    <script src="node_modules/p5/p5.min.js"></script>
     <!-- Sketch -->
-    <script src="assets/js/sketch-paint-brush.js"></script>
+    <script src="assets/js/sketch-processing.js"></script>
 </body>
 
 </html>
